@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Player_ScoresModelStoreContainer" CdmEntityContainer="Player_ScoresEntities1">
+    <EntitySetMapping Name="LeaderBoards">
+      <EntityTypeMapping TypeName="Player_ScoresModel.LeaderBoard">
+        <MappingFragment StoreEntitySet="LeaderBoard">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Player_Name" ColumnName="Player_Name" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
