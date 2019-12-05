@@ -73,25 +73,25 @@ namespace Scrabble
         private void Initialise()
         {
 
-            using (var db = new Player_ScoresEntities1())
+            using (var db = new ScoresEntities())
             {
-                var p1 = new LeaderBoard();
-                p1 = db.LeaderBoards.OrderByDescending(i => i.Id).Skip(1).First();
-                p1Name = p1.Player_Name;
+                var p1 = new Score();
+                p1 = db.Scores.OrderByDescending(i => i.Id).Skip(1).First();
+                p1Name = p1.Name;
                 
-                db.LeaderBoards.Remove(p1);
+                db.Scores.Remove(p1);
 
-                var p2 = new LeaderBoard();
-                p2 = db.LeaderBoards.OrderByDescending(i => i.Id).First();
-                p2Name = p2.Player_Name;
+                var p2 = new Score();
+                p2 = db.Scores.OrderByDescending(i => i.Id).First();
+                p2Name = p2.Name;
                 
-                db.LeaderBoards.Remove(p2);
+                db.Scores.Remove(p2);
                 db.SaveChanges();
 
 
             }
             //create IEnumerable of scrabble words
-            Scrabble_dict = File.ReadLines(@"C:\Users\tsoutar\Documents\Scrabble_words.txt");
+            Scrabble_dict = File.ReadLines(@"Collins Scrabble Words (2019).txt");
             //Assign tiles to both hands and display player1 on the rack
             NewTiles(P1Hand);
             NewTiles(P2Hand);
@@ -1148,17 +1148,17 @@ namespace Scrabble
 
         public void AddScoresToDB()
         {
-            using (var db = new Player_ScoresEntities1())
+            using (var db = new ScoresEntities())
             {
-                LeaderBoard updatePlayer1 = new LeaderBoard();
-                updatePlayer1.Player_Name = p1Name;
-                updatePlayer1.Score = p1Score;
-                db.LeaderBoards.Add(updatePlayer1);
+                Score updatePlayer1 = new Score();
+                updatePlayer1.Name = p1Name;
+                updatePlayer1.Score1 = p1Score;
+                db.Scores.Add(updatePlayer1);
 
-                LeaderBoard updatePlayer2 = new LeaderBoard();
-                updatePlayer2.Player_Name = p2Name;
-                updatePlayer2.Score = p2Score;
-                db.LeaderBoards.Add(updatePlayer2);
+                Score updatePlayer2 = new Score();
+                updatePlayer2.Name = p2Name;
+                updatePlayer2.Score1 = p2Score;
+                db.Scores.Add(updatePlayer2);
                 db.SaveChanges();
             }
         } //adds scores to the database

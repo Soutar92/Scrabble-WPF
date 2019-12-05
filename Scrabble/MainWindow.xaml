@@ -22,8 +22,8 @@
         <Label Content="Scrabble" FontSize="40" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <DataGrid x:Name="LeaderBoard" Grid.Row="1" Grid.Column="1" Grid.RowSpan="4" Background="DarkGray"  AutoGenerateColumns="False" ColumnWidth="*">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Player_Name}" />
-                <DataGridTextColumn Header="Score" Binding="{Binding Score}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Score" Binding="{Binding Score1}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Player 1 Name"  Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>

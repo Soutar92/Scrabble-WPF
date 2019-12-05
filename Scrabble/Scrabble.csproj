@@ -70,6 +70,24 @@
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Score.cs">
+      <DependentUpon>Scores.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scores.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Scores.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scores.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Scores.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Scores.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Scores.edmx</DependentUpon>
+    </Compile>
     <Page Include="GameWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -82,30 +100,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LeaderBoard.cs">
-      <DependentUpon>Player_Scores.tt</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Player_Scores.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Player_Scores.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Player_Scores.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Player_Scores.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Player_Scores.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Player_Scores.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -123,17 +123,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Player_Scores.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Player_Scores.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="packages.config" />
-    <None Include="Player_Scores.edmx.diagram">
-      <DependentUpon>Player_Scores.edmx</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="Scores.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Scores.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Scores.edmx.diagram">
+      <DependentUpon>Scores.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -143,15 +143,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Player_Scores.Context.tt">
+    <Content Include="Scores.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Player_Scores.edmx</DependentUpon>
-      <LastGenOutput>Player_Scores.Context.cs</LastGenOutput>
+      <DependentUpon>Scores.edmx</DependentUpon>
+      <LastGenOutput>Scores.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Player_Scores.tt">
+    <Content Include="Scores.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Player_Scores.edmx</DependentUpon>
-      <LastGenOutput>Player_Scores.cs</LastGenOutput>
+      <DependentUpon>Scores.edmx</DependentUpon>
+      <LastGenOutput>Scores.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("player_scores.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("player_scores.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scores.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scores.tt")]
 
 
