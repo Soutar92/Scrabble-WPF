@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\2019-06-c-sharp-labs\labs\Scrabble\Player_Scores.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\tobys\git\Scrabble\Scrabble\Scores.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

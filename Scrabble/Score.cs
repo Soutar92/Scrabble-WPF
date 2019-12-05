@@ -12,10 +12,10 @@ namespace Scrabble
     using System;
     using System.Collections.Generic;
     
-    public partial class LeaderBoard
+    public partial class Score
     {
         public int Id { get; set; }
-        public string Player_Name { get; set; }
-        public Nullable<int> Score { get; set; }
+        public string Name { get; set; }
+        public Nullable<int> Score1 { get; set; }
     }
 }
