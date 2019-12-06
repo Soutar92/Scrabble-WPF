@@ -33,8 +33,8 @@ namespace Scrabble
         //bool to determine whos turn it is
         static bool P1Turn = true;
         //player scores
-        static int p1Score = 0;
-        static int p2Score = 0;
+        static int? p1Score = 0;
+        static int? p2Score = 0;
         //turn count
         int turncount = 0;
 
@@ -54,8 +54,8 @@ namespace Scrabble
         static Random rnd = new Random();
         Queue<char> ShuffledTiles = new Queue<char>(Tiles.OrderBy(x => rnd.Next()).Take(50));
 
-        Dictionary<char, int> LetterValues = new Dictionary<char, int>() { { 'A', 1 }, { 'E', 1 }, { 'I', 1 }, { 'O', 1 }, { 'U', 1 }, { 'L', 1 }, { 'N', 1 }, { 'S', 1 }, { 'T', 1 }, { 'R', 1 },
-            { 'D', 2 }, { 'G', 2 }, { 'B', 3 }, { 'C', 3 }, { 'M', 3 }, { 'P', 3 }, { 'F', 4 }, { 'H', 4 }, { 'V', 4 }, { 'W', 4 }, { 'Y', 4 }, { 'K', 5 }, { 'J', 8 }, { 'X', 8 }, { 'Q', 10 }, { 'Z', 10 } };
+        Dictionary<char, int?> LetterValues = new Dictionary<char, int?>() { { 'A', 1 }, { 'E', 1 }, { 'I', 1 }, { 'O', 1 }, { 'U', 1 }, { 'L', 1 }, { 'N', 1 }, { 'S', 1 }, { 'T', 1 }, { 'R', 1 },
+            { 'D', 2 }, { 'G', 2 }, { 'B', 3 }, { 'C', 3 }, { 'M', 3 }, { 'P', 3 }, { 'F', 4 }, { 'H', 4 }, { 'V', 4 }, { 'W', 4 }, { 'Y', 4 }, { 'K', 5 }, { 'J', 8 }, { 'X', 8 }, { 'Q', 10 }, { 'Z', 10 }, {'\0', null } };
 
         //Create grid of letters
         char[,] CoordinateGrid = new char[9, 9];
@@ -688,6 +688,15 @@ namespace Scrabble
             Rack5.Content = hand[4];
             Rack6.Content = hand[5];
             Rack7.Content = hand[6];
+
+
+            Points1.Text = LetterValues[hand[0]].ToString();
+            Points2.Text = LetterValues[hand[1]].ToString();
+            Points3.Text = LetterValues[hand[2]].ToString();
+            Points4.Text = LetterValues[hand[3]].ToString();
+            Points5.Text = LetterValues[hand[4]].ToString();
+            Points6.Text = LetterValues[hand[5]].ToString();
+            Points7.Text = LetterValues[hand[6]].ToString();
             EnableRack();
 
         } // Refreshes the rack
@@ -755,9 +764,9 @@ namespace Scrabble
             Player2Score.Text = $"{p2Name}: {p2Score.ToString()}";
         } // refresh the player scores
 
-        public int WordValues(string word)
+        public int? WordValues(string word)
         {
-            int value = 0;
+            int? value = 0;
             if (Scrabble_dict.Contains(word))
             {
 
@@ -807,13 +816,13 @@ namespace Scrabble
             else
             {
 
-                List<(string, int)> validWords = new List<(string, int)>();
+                List<(string, int?)> validWords = new List<(string, int?)>();
 
                 foreach (var nw in NewWords)
                 {
                     if (Scrabble_dict.Contains(nw))
                     {
-                        int WordValue = WordValues(nw);
+                        int? WordValue = WordValues(nw);
                         validWords.Add((nw, WordValue));
                     }
                 }
@@ -839,7 +848,7 @@ namespace Scrabble
 
         public void WordSubmit_Button_Click(object sender, RoutedEventArgs e)
         {
-            int TotalWordsValue = 0;
+            int? TotalWordsValue = 0;
             //creating words
             string[] NewWords = CheckSurroundingWords2(BoardRecallTiles);
 
@@ -854,7 +863,7 @@ namespace Scrabble
                 WordSubmit_Button.IsEnabled = false;
                 foreach (var nw in NewWords)
                 {
-                    int WordValue = WordValues(nw);
+                    int? WordValue = WordValues(nw);
 
                     Wordsplayed.Add(nw);
                     TotalWordsValue += WordValue;
