@@ -144,23 +144,40 @@
         </DockPanel>
         <DockPanel x:Name="Rack_Panel" Grid.Row="2" Grid.Column="1" Background="Azure">
             <Grid Margin="10 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height=".4*"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".4*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".4*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".4*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".4*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".4*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".4*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width=".4*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="Rack1" Grid.Row="0" Grid.Column="0" Click="Rack1_Click"/>
-                <Button x:Name="Rack2" Grid.Row="0" Grid.Column="1" Click="Rack2_Click"/>
-                <Button x:Name="Rack3" Grid.Row="0" Grid.Column="2" Click="Rack3_Click"/>
-                <Button x:Name="Rack4" Grid.Row="0" Grid.Column="3" Click="Rack4_Click"/>
-                <Button x:Name="Rack5" Grid.Row="0" Grid.Column="4" Click="Rack5_Click"/>
-                <Button x:Name="Rack6" Grid.Row="0" Grid.Column="5" Click="Rack6_Click"/>
-                <Button x:Name="Rack7" Grid.Row="0" Grid.Column="6" Click="Rack7_Click"/>
-
+                <Button x:Name="Rack1" Grid.Row="0" Grid.Column="0" Click="Rack1_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <Button x:Name="Rack2" Grid.Row="0" Grid.Column="2" Click="Rack2_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <Button x:Name="Rack3" Grid.Row="0" Grid.Column="4" Click="Rack3_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <Button x:Name="Rack4" Grid.Row="0" Grid.Column="6" Click="Rack4_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <Button x:Name="Rack5" Grid.Row="0" Grid.Column="8" Click="Rack5_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <Button x:Name="Rack6" Grid.Row="0" Grid.Column="10" Click="Rack6_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <Button x:Name="Rack7" Grid.Row="0" Grid.Column="12" Click="Rack7_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <TextBlock x:Name="Points1" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock x:Name="Points2" Grid.Row="3" Grid.Column="3"/>
+                <TextBlock x:Name="Points3" Grid.Row="5" Grid.Column="5"/>
+                <TextBlock x:Name="Points4" Grid.Row="7" Grid.Column="7"/>
+                <TextBlock x:Name="Points5" Grid.Row="9" Grid.Column="9"/>
+                <TextBlock x:Name="Points6" Grid.Row="11" Grid.Column="11"/>
+                <TextBlock x:Name="Points7" Grid.Row="13" Grid.Column="13"/>
             </Grid>
         </DockPanel>
         <DockPanel x:Name="Button_Panel" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Background="Beige" Margin="10 10">
