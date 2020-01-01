@@ -26,7 +26,7 @@ namespace Scrabble
         //create player names
         static string p1Name;
         static string p2Name;
-        
+
         // create player 'hands'
         static char[] P1Hand = new char[7];
         static char[] P2Hand = new char[7];
@@ -78,13 +78,13 @@ namespace Scrabble
                 var p1 = new Score();
                 p1 = db.Scores.OrderByDescending(i => i.Id).Skip(1).First();
                 p1Name = p1.Name;
-                
+
                 db.Scores.Remove(p1);
 
                 var p2 = new Score();
                 p2 = db.Scores.OrderByDescending(i => i.Id).First();
                 p2Name = p2.Name;
-                
+
                 db.Scores.Remove(p2);
                 db.SaveChanges();
 
@@ -655,7 +655,7 @@ namespace Scrabble
         {
             int nullCount = hand.Count(s => s == '\0');
 
-           
+
             if (nullCount < ShuffledTiles.Count)
             {
                 for (int i = 1; i <= nullCount; i++)
@@ -722,7 +722,7 @@ namespace Scrabble
             Rack6.IsEnabled = false;
             Rack7.IsEnabled = false;
         } //disable all buttons in the 'rack'
-        
+
         public void PlaceTileOnBoard(Button boardTile)
         {
             boardTile.Content = selectedTile.Content.ToString()[0];
@@ -735,6 +735,8 @@ namespace Scrabble
                 AddToGrid(boardTile);
 
             }
+
+            WordCheck();
 
         } //set content of Tile, disable rack-tile, remembers board tile for 'recalling', reset selectedTile
 
@@ -755,6 +757,8 @@ namespace Scrabble
                 WordSubmit_Button.IsEnabled = false;
                 EnableRack();
             }
+
+            Log_TextBlock.Items.Clear();
 
         }// returns unsubmitted tiles to the rack, 
 
@@ -780,18 +784,17 @@ namespace Scrabble
             return value;
         } // calculate if a word is valid and value of a word
 
-        public void WordCheck_Button_Click(object sender, RoutedEventArgs e)
+        public void WordCheck()
         {
             //int TotalWordsValue = 0;
 
             //string[] NewWords = CheckGridForWords(TempGrid);
             string[] NewWords = CheckSurroundingWords2(BoardRecallTiles);
             Log_TextBlock.Items.Clear();
-            if (BoardRecallTiles.Count == 0)
-            {
-                Log_TextBlock.Items.Add($"No word played");
-            }
-            else if (IfAttachedToWord(BoardRecallTiles)==false)
+            WordSubmit_Button.IsEnabled = false;
+
+            
+            if (IfAttachedToWord(BoardRecallTiles) == false)
             {
                 Log_TextBlock.Items.Add($"Word unattached");
             }
@@ -837,7 +840,7 @@ namespace Scrabble
                         Log_TextBlock.Items.Add($"{nw.Item1}: {nw.Item2} pts");
                     }
                     WordSubmit_Button.IsEnabled = true;
-                    DisableRack();
+                    
                 }
 
 
@@ -857,7 +860,7 @@ namespace Scrabble
             {
                 Log_TextBlock.Items.Add($"Word is not valid");
             }
-            
+
             else
             {
                 WordSubmit_Button.IsEnabled = false;
@@ -906,15 +909,15 @@ namespace Scrabble
                     PlayersTurnText.Text = $"{p1Name}'s Turn";
                 }
                 turncount++;
-                if(HaveWordsRunOut() == true)
+                if (HaveWordsRunOut() == true)
                 {
                     Replace_Button.IsEnabled = false;
                 }
-                if(ShuffledTiles.Count > 0)
+                if (ShuffledTiles.Count > 0)
                 {
                     Replace_Button.IsEnabled = true;
                 }
-                
+
 
             }
 
@@ -968,7 +971,7 @@ namespace Scrabble
 
                 //grid row
                 int i = iCoordinates[0];
-                if(CheckForGapSameRowBug(i, jCoordinates) == false)
+                if (CheckForGapSameRowBug(i, jCoordinates) == false)
                 {
                     SurroundingWords.Add("Not In Line");
                 }
@@ -980,14 +983,14 @@ namespace Scrabble
                         SurroundingWords.Add(FindWordAlongColumn(j, iCoordinates));
                     }
                 }
-                
+
 
             }
             else if (sameColumn)
             {
                 //grid column
                 int j = jCoordinates[0];
-                if(CheckForGapSameColumnBug(j, iCoordinates) == false)
+                if (CheckForGapSameColumnBug(j, iCoordinates) == false)
                 {
                     SurroundingWords.Add("Not In Line");
                 }
@@ -999,7 +1002,7 @@ namespace Scrabble
                         SurroundingWords.Add(FindWordAlongRow(i, jCoordinates));
                     }
                 }
-                
+
             }
 
             List<string> notNullSurroundingWords = new List<string>();
@@ -1029,7 +1032,7 @@ namespace Scrabble
             }
 
             NewTiles(hand);
-        }  
+        }
 
         private void Replace_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -1049,7 +1052,7 @@ namespace Scrabble
             {
                 Array.Clear(P1Hand, '\0', P1Hand.Length - 1);
                 NewTiles(P1Hand);
-                
+
                 P1Turn = false;
                 RackRefresh(P2Hand);
                 PlayersTurnText.Text = $"{p2Name}'s Turn";
@@ -1063,8 +1066,8 @@ namespace Scrabble
             {
                 Array.Clear(P2Hand, '\0', P2Hand.Length - 1);
                 NewTiles(P2Hand);
-                
-                
+
+
                 P1Turn = true;
                 RackRefresh(P1Hand);
                 PlayersTurnText.Text = $"{p1Name}'s Turn";
@@ -1076,7 +1079,7 @@ namespace Scrabble
             }
             Log_TextBlock.Items.Clear();
             WordSubmit_Button.IsEnabled = false;
-            
+
 
 
         } //replace all all tiles in your hand with new tiles
@@ -1148,7 +1151,7 @@ namespace Scrabble
 
         public void DisableButtons()
         {
-            WordCheck_Button.IsEnabled = false;
+            
             Recall_Button.IsEnabled = false;
             WordSubmit_Button.IsEnabled = false;
             Replace_Button.IsEnabled = false;
@@ -1239,7 +1242,7 @@ namespace Scrabble
                 findEnd++;
             }
 
-            if(findEnd - findStart < jCoords[jCoords.Count-1] - jCoords[0])
+            if (findEnd - findStart < jCoords[jCoords.Count - 1] - jCoords[0])
             {
                 return false;
             }
@@ -1258,12 +1261,12 @@ namespace Scrabble
                 findStart--;
             }
             int findEnd = iCoords[0];
-            while (findEnd < TempGrid.GetLength(1) - 1 && TempGrid[findEnd + 1,j] != '\0')
+            while (findEnd < TempGrid.GetLength(1) - 1 && TempGrid[findEnd + 1, j] != '\0')
             {
                 findEnd++;
             }
 
-            if (findEnd - findStart < iCoords[iCoords.Count-1] - iCoords[0])
+            if (findEnd - findStart < iCoords[iCoords.Count - 1] - iCoords[0])
             {
                 return false;
             }
@@ -1275,23 +1278,23 @@ namespace Scrabble
 
         public bool IfAttachedToWord(List<Button> buttons) //returns true if  attached to another word
         {
-            
+
             //check if its attached
             bool attached = false;
             List<(int, int)> Coords = new List<(int, int)>();
-            foreach(var but in buttons)
+            foreach (var but in buttons)
             {
                 Coords.Add(ButtonGrid[but]);
             }
-            foreach(var coord in Coords)
+            foreach (var coord in Coords)
             {
-                if(turncount == 0 || SurroundingTilesEmpty(coord.Item1, coord.Item2) == false)
+                if (turncount == 0 || SurroundingTilesEmpty(coord.Item1, coord.Item2) == false)
                 {
                     attached = true;
                 }
-                
+
             }
-            
+
             return attached;
         }
 
@@ -1299,13 +1302,13 @@ namespace Scrabble
         {
             //if a surrounding tile isnt empty
             bool empty = false;
-            if(i == 0)
+            if (i == 0)
             {
-                if(j == 0)
+                if (j == 0)
                 {
                     empty = CoordinateGrid[i + 1, j] == '\0' && CoordinateGrid[i, j + 1] != '\0';
                 }
-                else if(j == TempGrid.GetLength(1)-1)
+                else if (j == TempGrid.GetLength(1) - 1)
                 {
                     empty = CoordinateGrid[i + 1, j] == '\0' && CoordinateGrid[i, j - 1] == '\0';
                 }
@@ -1314,9 +1317,9 @@ namespace Scrabble
                     empty = CoordinateGrid[i + 1, j] == '\0' && CoordinateGrid[i, j + 1] == '\0' && CoordinateGrid[i, j - 1] == '\0';
                 }
             }
-            else if(i == TempGrid.GetLength(0)-1)
+            else if (i == TempGrid.GetLength(0) - 1)
             {
-                if(j == TempGrid.GetLength(1)-1)
+                if (j == TempGrid.GetLength(1) - 1)
                 {
                     empty = CoordinateGrid[i - 1, j] == '\0' && CoordinateGrid[i, j - 1] == '\0';
                 }
@@ -1329,7 +1332,7 @@ namespace Scrabble
                     empty = CoordinateGrid[i - 1, j] == '\0' && CoordinateGrid[i, j + 1] == '\0' && CoordinateGrid[i, j - 1] == '\0';
                 }
             }
-            else if (j == TempGrid.GetLength(1)-1)
+            else if (j == TempGrid.GetLength(1) - 1)
             {
                 empty = CoordinateGrid[i + 1, j] == '\0' && CoordinateGrid[i - 1, j] == '\0' && CoordinateGrid[i, j - 1] == '\0';
             }
@@ -1339,7 +1342,7 @@ namespace Scrabble
             }
             else
             {
-                empty = CoordinateGrid[i+ 1, j] == '\0' && CoordinateGrid[i - 1, j] == '\0' && CoordinateGrid[i, j + 1] == '\0' && CoordinateGrid[i, j - 1] == '\0';
+                empty = CoordinateGrid[i + 1, j] == '\0' && CoordinateGrid[i - 1, j] == '\0' && CoordinateGrid[i, j + 1] == '\0' && CoordinateGrid[i, j - 1] == '\0';
             }
 
             return empty;
@@ -1348,7 +1351,7 @@ namespace Scrabble
         public bool HasWordBeenPlayed(string[] words)
         {
             bool iftrue = false;
-            foreach(var word in words)
+            foreach (var word in words)
             {
                 if (Wordsplayed.Contains(word))
                 {
@@ -1362,9 +1365,9 @@ namespace Scrabble
         public bool IsFirstWordCentered(List<Button> buttonlist)
         {
             bool centered = false;
-            foreach(Button but in buttonlist)
+            foreach (Button but in buttonlist)
             {
-                if(but == E5)
+                if (but == E5)
                 {
                     centered = true;
                 }
@@ -1376,11 +1379,16 @@ namespace Scrabble
         public bool HaveWordsRunOut()
         {
             bool runout = false;
-            if(ShuffledTiles.Count == 0)
+            if (ShuffledTiles.Count == 0)
             {
                 runout = true;
             }
             return runout;
         }  //checks if the tile bag is empty
+
+       
     }
+
 }
+    
+

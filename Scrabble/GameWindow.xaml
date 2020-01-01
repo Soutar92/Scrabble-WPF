@@ -188,14 +188,12 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="Recall_Button" Content="Recall Letters" Grid.Row="3" Click="Recall_Button_Click"/>
-                <Button x:Name="WordCheck_Button" Content="Check Word" Grid.Row="2" Click="WordCheck_Button_Click"/>
+                <Button x:Name="Recall_Button" Content="Recall Letters" Grid.Row="2" Click="Recall_Button_Click"/>
                 <Button x:Name="WordSubmit_Button" Content="Submit Word" Grid.Row="1" Click="WordSubmit_Button_Click" />
                 <ListBox x:Name="Log_TextBlock" Grid.Row="0" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Button x:Name="Replace_Button" Content="Replace all Letters" Grid.Row="4" Click="Replace_Button_Click"/>
-                <Button x:Name="Pass_Button" Content="Pass Turn" Grid.Row="5" Click="Pass_Button_Click"/>
+                <Button x:Name="Replace_Button" Content="Replace all Letters" Grid.Row="3" Click="Replace_Button_Click"/>
+                <Button x:Name="Pass_Button" Content="Pass Turn" Grid.Row="4" Click="Pass_Button_Click"/>
             </Grid>
         </DockPanel>
         <Button x:Name="dummyButton" Background="White"/>
